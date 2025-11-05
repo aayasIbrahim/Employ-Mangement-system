@@ -4,9 +4,10 @@ interface Task {
   id: string;
   title: string;
   description: string;
-  taskDate: string;          // assigned date
-  completedDate?: string;    // date when completed
   status: "Pending" | "Completed";
+  taskDate: string;
+  completedDate?: string;
+  assignedTo: string; 
 }
 
 interface TaskState {
