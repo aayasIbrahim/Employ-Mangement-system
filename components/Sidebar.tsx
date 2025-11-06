@@ -1,0 +1,69 @@
+"use client";
+import { useEffect } from "react";
+import { useSession } from "next-auth/react";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { signOut } from "next-auth/react";
+import { Home, ClipboardList, Clock, LogOut, User } from "lucide-react";
+
+const menu = [
+  { name: "Dashboard", icon: <Home size={18} />, href: "/dashboard" },
+  { name: "Attendance", icon: <Clock size={18} />, href: "/dashboard/attendance" },
+  { name: "Tasks", icon: <ClipboardList size={18} />, href: "/dashboard/tasks" },
+  { name: "Leave", icon: <User size={18} />, href: "/dashboard/leave" },
+  { name: "Profile", icon: <User size={18} />, href: "/dashboard/employee/profile" },
+];
+
+export default function Sidebar() {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await signOut({ redirect: false });
+    router.push("/login");
+  };
+
+
+   const { data: session, status } = useSession();
+
+  useEffect(() => {
+    console.log("✅ Session Details and full information:", session);
+    console.log("✅ Status:", status );
+    console.log("mongodb connnect:")
+  }, [session, status]);
+
+  return (
+    <aside className="w-64 bg-white shadow-lg flex flex-col justify-between">
+      <div>
+        <div className="p-5 font-bold text-lg text-indigo-600 border-b">
+          Engineer Panel
+        </div>
+
+        <nav className="p-3">
+          {menu.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={`flex items-center gap-3 p-2 my-2 rounded-lg transition-colors ${
+                pathname === item.href
+                  ? "bg-indigo-100 text-indigo-600 font-medium"
+                  : "text-gray-600 hover:bg-gray-100"
+              }`}
+            >
+              {item.icon}
+              {item.name}
+            </Link>
+          ))}
+        </nav>
+      </div>
+
+      <button
+        onClick={handleLogout}
+        className="m-4 flex items-center gap-2 text-red-500 hover:bg-red-50 p-2 rounded-lg transition-colors"
+      >
+        <LogOut size={18} />
+        Logout
+      </button>
+    </aside>
+  );
+}
