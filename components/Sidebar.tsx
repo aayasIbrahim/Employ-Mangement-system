@@ -7,11 +7,11 @@ import { signOut } from "next-auth/react";
 import { Home, ClipboardList, Clock, LogOut, User } from "lucide-react";
 
 const menu = [
-  { name: "Dashboard", icon: <Home size={18} />, href: "/dashboard" },
-  { name: "Attendance", icon: <Clock size={18} />, href: "/dashboard/attendance" },
-  { name: "Tasks", icon: <ClipboardList size={18} />, href: "/dashboard/tasks" },
-  { name: "Leave", icon: <User size={18} />, href: "/dashboard/leave" },
-  { name: "Profile", icon: <User size={18} />, href: "/dashboard/employee/profile" },
+  { name: "Dashboard", icon: <Home size={18} />, href: "/" },
+  { name: "Attendance", icon: <Clock size={18} />, href: "/attendance" },
+  { name: "Tasks", icon: <ClipboardList size={18} />, href: "/tasks" },
+  { name: "Leave", icon: <User size={18} />, href: "/leave" },
+  { name: "Profile", icon: <User size={18} />, href: "/profile" },
 ];
 
 export default function Sidebar() {

@@ -39,6 +39,7 @@ export default function AttendancePage() {
     setAttendanceList(updatedList);
     setIsClockedIn(false);
   };
+  console.log("i am attendance")
 
   return (
     <div className="p-6">
