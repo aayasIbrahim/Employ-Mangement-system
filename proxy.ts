@@ -23,7 +23,6 @@ export async function proxy(req: NextRequest) {
     return NextResponse.next();
   }
 
-  // অন্য কোন public route → কোন সমস্যা নাই
   return NextResponse.next();
 }
 
